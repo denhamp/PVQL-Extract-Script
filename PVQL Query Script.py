@@ -1,17 +1,16 @@
 import requests
-import json
 import getpass
-import pandas as pd
-import re
 import sys
+
 import yaml
 
 requests.packages.urllib3.disable_warnings()
 
-# Login Function uses information from the config.yml file to access the tenant. GetPass is used to get user password without echoing to the console.
+# Login Function uses information from the config.yml file to access the tenant. 
+# GetPass is used to get user password without echoing to the console.
 
 def login_func():
-    with open('config.yml', 'r') as yaml_file:
+    with open(sys.argv[1], 'r') as yaml_file:
         yaml_data = yaml.safe_load(yaml_file)
     tenant_url = yaml_data['tenant']['url']
     print(f"Url: {tenant_url}")
@@ -63,16 +62,10 @@ def query_data(token, tenant_url, pvql_query):
 def main():
     data = login_func()
     dataj = query_data(data[0], data[1], data[2])
-    print(json.dumps(dataj))
-    df = pd.DataFrame(dataj['result']['data'])
-    df.to_csv('essensys-tls.csv', index=False, header=False)
 
-
-    print(dataj)
     print("Number of Keys " + str(len(dataj['result']['info']['columns']['key'])))
     with open(data[3], 'w') as f:
         length = len(dataj['result']['data'])
-        print('Length =' + str(length))
         i = 0
         j = 0
         k = 0
@@ -95,15 +88,12 @@ def main():
                     keys1 = dataj['result']['data'][i]['key'][j]['status']
                 f.write(str(keys1)+',')
                 j += 1
-                print(keys1)
             while k < len(dataj['result']['info']['columns']['values']):
-                print(dataj['result']['data'][i]['values'][k])
                 if 'value' in dataj['result']['data'][i]['values'][k]:
                     keys1 = dataj['result']['data'][i]['values'][k]['value']
                 else:
                     keys1 = dataj['result']['data'][i]['values'][k]['status']
                 f.write(str(keys1)+',')
-                print(keys1)
                 k += 1
             k = 0
             i += 1
@@ -112,15 +102,7 @@ def main():
         i = 1
         j = 1
 
-    # with open(data[3], "w") as outfile:
-    #     while i < len((dataj['result']['data'])):
-    #         line = json.dumps(dataj['result']['data'][i]['key'][0]['value'])
-    #         # if re.search(regex_arg, line):
-    #         # print(line)
-    #         print(line, file=outfile)
-    #         i += 1
-
-    print(len((dataj['result']['data'])))
+    print('Total Data: '+ str(len((dataj['result']['data']))))
 
 
 if __name__ == "__main__":
