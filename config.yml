@@ -2,6 +2,6 @@
 tenant:
   url: "https://essensys-us.analytics.accedian.io"
   username: "dpearce@accedian.com"
-  pvql query : 'ct.count BY server_name,server.ip FROM tls SINCE @now-1800 TOP 2000'
+  pvql query : 'server.rt,traffic BY application.name FROM tls TOP 3600'
   output file: 'extract.csv'
 ...
