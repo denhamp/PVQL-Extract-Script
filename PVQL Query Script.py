@@ -6,8 +6,9 @@ import yaml
 
 requests.packages.urllib3.disable_warnings()
 
-# Login Function uses information from the config.yml file to access the tenant. 
+# Login Function uses information from the config.yml file to access the tenant.
 # GetPass is used to get user password without echoing to the console.
+
 
 def login_func():
     with open(sys.argv[1], 'r') as yaml_file:
@@ -34,7 +35,8 @@ def login_func():
 
     return token, tenant_url, pvql_query, output_file
 
-# Function to access the required data using PVQL. 
+# Function to access the required data using PVQL.
+
 
 def query_data(token, tenant_url, pvql_query):
 
@@ -46,7 +48,7 @@ def query_data(token, tenant_url, pvql_query):
     }
     data = {'expr': pvql_query}
 
-    #Examples
+    # Examples
     # data = {"expr":"server.rt BY application.name FROM tcp"}
     # data ={"expr":"traffic BY client.ip,server.ip,server.port,protostack FROM transport WHERE source.ip = 45.12.142.140 SINCE @now - 3600"}
     # data ={'expr':'ct.count BY server_name FROM tls SINCE @now-3600'}
@@ -62,8 +64,10 @@ def query_data(token, tenant_url, pvql_query):
 def main():
     data = login_func()
     dataj = query_data(data[0], data[1], data[2])
+    print(dataj)
 
-    print("Number of Keys " + str(len(dataj['result']['info']['columns']['key'])))
+    print("Number of Keys " +
+          str(len(dataj['result']['info']['columns']['key'])))
     with open(data[3], 'w') as f:
         length = len(dataj['result']['data'])
         i = 0
@@ -102,7 +106,7 @@ def main():
         i = 1
         j = 1
 
-    print('Total Data: '+ str(len((dataj['result']['data']))))
+    print('Total Data: ' + str(len((dataj['result']['data']))))
 
 
 if __name__ == "__main__":

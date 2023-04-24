@@ -2,6 +2,5 @@
 tenant:
   url: "https://essensys-us.analytics.accedian.io"
   username: "dpearce@accedian.com"
-  pvql query : 'server.rt,traffic BY application.name FROM tls TOP 3600'
-  output file: 'extract.csv'
-...
+  pvql query: "rows.integrated.per_minute FROM flows BY time(60) SINCE @(2023-03-01T00:00:00) UNTIL @(2023-03-30T23:59:00)"
+  output file: "extract.csv"
