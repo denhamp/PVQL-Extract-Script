@@ -65,7 +65,6 @@ def main():
     data = login_func()
     dataj = query_data(data[0], data[1], data[2])
     print(dataj)
-
     print("Number of Keys " +
           str(len(dataj['result']['info']['columns']['key'])))
     with open(data[3], 'w') as f:
