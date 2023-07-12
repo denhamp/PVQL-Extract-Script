@@ -1,0 +1,6 @@
+---
+tenant:
+  url: "https://essensys-us.analytics.accedian.io"
+  username: "dpearce@accedian.com"
+  pvql query: "ct.count BY server_name FROM tls SINCE @(2023-05-16T00:00:00) UNTIL @(2023-05-16T12:00:00)"
+  output file: "extract_sni.csv"
