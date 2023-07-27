@@ -48,6 +48,7 @@ def query_data(token, tenant_url, pvql_query):
     }
     data = {"expr": pvql_query}
 
+    print(data)
     # Examples
     # data = {"expr":"server.rt BY application.name FROM tcp"}
     # data ={"expr":"traffic BY client.ip,server.ip,server.port,protostack FROM transport WHERE source.ip = 45.12.142.140 SINCE @now - 3600"}

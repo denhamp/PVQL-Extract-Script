@@ -2,5 +2,5 @@
 tenant:
   url: "https://essensys-us.analytics.accedian.io"
   username: "dpearce@accedian.com"
-  pvql query: "#client.zone.name, #client.ip BY flatten(client.zone.name, 2) FROM transport WHERE (client.zone.id NOT IN 2 AND client.zone.id NOT IN 6) SINCE @(2023-07-10T00:00:00.000Z) UNTIL @(2023-07-13T23:59:59.000Z)"
-  output file: "extract_sizing.csv"
+  pvql query: "ct.count BY flatten(client.zone.name, 3) FROM tcp SINCE @(2023-07-17T00:00:00.000Z) UNTIL @(2023-07-26T23:59:59.000Z)"
+  output file: "extract_sizing_sites_uk.csv"
