@@ -1,0 +1,13 @@
+---
+tenant:
+  url: "https://essensys-uk.analytics.accedian.io"
+  username: "dpearce@accedian.com"
+metrics:
+  aggregation: avg
+  granularity: PT1M
+  start: "2023-03-20T00:00:00Z"
+  end: "2023-03-20T01:00:00Z"
+  objecttype: "twamp-sf"
+  metrics:  "packetsLostPct"
+  output: 'extract.csv'
+...
