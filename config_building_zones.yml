@@ -1,0 +1,6 @@
+---
+tenant:
+  url: "https://essensys-us.analytics.accedian.io"
+  username: "dpearce@accedian.com"
+  pvql query: "#client.ip, #client.zone.id BY flatten(client.zone.name, 2), capture.hostname FROM transport WHERE (client.zone.id NOT IN 2 AND client.zone.id NOT IN 6) TOP 1000{v1 DESC} SINCE @(2023-10-30T07:42:00.000Z) UNTIL @(2023-10-30T15:42:00.000Z)"
+  output file: "extract_building.csv"

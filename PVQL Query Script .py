@@ -54,9 +54,10 @@ def query_data(token, tenant_url, pvql_query):
     # data ={"expr":"traffic BY client.ip,server.ip,server.port,protostack FROM transport WHERE source.ip = 45.12.142.140 SINCE @now - 3600"}
     # data ={'expr':'ct.count BY server_name FROM tls SINCE @now-3600'}
     # data ={"expr":"traffic BY client.ip,server.ip,server.port,protostack FROM transport WHERE client.ip = 45.12.142.140 OR server.ip = 45.12.142.140}
-
+    print("send Query")
     resp = requests.post(url, headers=headers, data=data, verify=False)
     resp.raise_for_status()
+    print("Query Received")
 
     dataj = resp.json()
     print(dataj)

@@ -1,9 +1,0 @@
-<<<<<<< Updated upstream
----
-tenant:
-  url: "https://essensys-us.analytics.accedian.io"
-  username: "dpearce@accedian.com"
-  pvql query: "ct.count, #client.zone.id BY flatten (client.zone.id,2), capture.hostname FROM transport  TOP 1000{v1 DESC} SINCE @(2023-09-04T00:00:00) UNTIL @(2023-09-08T23:59:00)"
-  output file: "extract_us_2.csv"
-=======
->>>>>>> Stashed changes

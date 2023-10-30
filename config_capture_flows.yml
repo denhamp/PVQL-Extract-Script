@@ -1,0 +1,6 @@
+---
+tenant:
+  url: "https://essensys-us.analytics.accedian.io"
+  username: "dpearce@accedian.com"
+  pvql query: "rows.integrated.per_minute BY capture.hostname FROM flows SINCE @(2023-09-04T00:00:00) UNTIL @(2023-09-08T23:59:00)"
+  output file: "extract_flows.csv"
